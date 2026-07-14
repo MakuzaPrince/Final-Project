@@ -1,0 +1,12 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci
+
+# Source is mounted at runtime via docker-compose volume
+EXPOSE 5173
+
+# Vite must bind to 0.0.0.0 to be reachable from outside the container
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

@@ -1,0 +1,14 @@
+FROM node:20-alpine
+
+RUN apk add --no-cache dumb-init
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci
+
+# Source is mounted at runtime via docker-compose volume
+EXPOSE 5000
+
+ENTRYPOINT ["dumb-init", "--"]
+CMD ["npm", "run", "dev"]

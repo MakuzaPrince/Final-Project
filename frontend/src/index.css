@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes dialogShrink {
+    from { width: 100%; }
+    to   { width: 0%; }
+}
+
+@layer base {
+    :root {
+        --rra-blue: #1E6BB5;
+        --rra-blue-dark: #155090;
+        --rra-gold: #F5A100;
+        --rra-green: #38B038;
+        --color-primary: var(--rra-blue);
+    }
+
+    html {
+        font-size: 14px;
+    }
+
+    body {
+        @apply bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 antialiased;
+        font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+
+    /* Ensure all text is readable in dark mode */
+    .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+        @apply text-gray-100;
+    }
+
+    .dark p {
+        @apply text-gray-300;
+    }
+
+    /* Inputs get proper dark styling globally */
+    .dark input:not([type="checkbox"]):not([type="radio"]),
+    .dark textarea,
+    .dark select {
+        @apply bg-gray-800 border-gray-700 text-gray-100 placeholder-gray-500;
+    }
+}
+
+/* Custom Utilities */
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+
+/* Leaflet Routing Machine Custom Styles */
+.leaflet-routing-container {
+    background-color: transparent !important;
+    backdrop-filter: blur(1px) saturate(5%);
+    -webkit-backdrop-filter: blur(2px) saturate(5%);
+    padding: 0.75rem !important;
+    border-radius: 1.25rem !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.6) !important;
+    color: #111827 !important;
+    box-shadow: none !important;
+    opacity: 1;
+    max-height: none !important;
+    overflow: hidden !important;
+    transition: all 0.2s ease;
+}
+
+.dark .leaflet-routing-container {
+    color: #f3f4f6 !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.leaflet-routing-alt,
+.leaflet-routing-alt * {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.leaflet-routing-alt tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.dark .leaflet-routing-alt tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.leaflet-routing-instruction-distance {
+    font-weight: 900 !important;
+    color: #1E6BB5 !important;
+}
+
+.leaflet-routing-alt tr:hover {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+}
